@@ -1,7 +1,7 @@
 #Flesh and Chome
 
-  Heavy weird/eldritch horror art style.
-  Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
+Heavy weird/eldritch horror art style.
+Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
 
 * System Overview
 ** Liquids
@@ -10,7 +10,21 @@
    Machines leak oil, organics leak blood. They are considered "covered" after leaking onto themselves.
    Other systems can cause this liquid to spread, or have actions be conditional on the coverage of creatures.
    Other liquids exist in edge cases, like Fire
-
+** Damage Types
+   Instead of just damage, damage has types.
+   Damage has "form"/"degree of focus" and "filling".
+   The filling is what hits them, the form is how.
+   The more dimensions of contact an attack has, the more effective armor is against it, but the less likely it is to miss.
+*** Degree of Focus:
+    ~ Piercing
+    ~ Slicing
+    ~ Bashing
+    ~ Smothering
+    ~ Exotic
+*** Elements:
+    - Fire
+    - Solvent (water)
+    - Bone
 
 * Examples
   - (Passive) Memory of Sharks: This creature has 50% more attack when bloodied 
