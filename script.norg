@@ -2,15 +2,29 @@
 
 > Eventually, I settled on making a JRPG-style game. One behavior I haven't seen in many bevy games so far is multiple gameplay formats within one gameplay loop. Plenty of shooters, simulators, tower defense games, etc., but they all pack all the gameplay into a single style of interaction. With JRPGs - or at least with an interesting one - gameplay is split between the battle screen and the overworld. Splitting the gameplay like that poses an interesting design challenge I'd like to tackle, and it also gives my successors a lot of choices for how to expand the game. They can add new interactions to the overworld, or they can make the battle system more interesting. Or idealling, add more interactions between the two.
 
-> Two games (or series) are inspiring my design choices: Siralim and Spectrobes. Siralim is a fascinating creature-collection battler in the style of pokemon, but focusing on having many layers of composable detail with each creature. Each creature has 5 stats (Max health, attack, intelligence, defense, speed), slots to equip spells (which are moves), a 'trait' unique to that creature, an equippable item, and a personality which affects stat growth. None of these systems alone are that interesting, but interaction between them can quickly create complex stratagies and interactions. 
+> Two games (or series) are inspiring my design choices: Siralim and Spectrobes. Siralim is a fascinating creature-collection battler in the style of pokemon, but focusing on having many layers of composable detail with each creature. Each creature has a class, a race, a species, 5 stats (Max health, attack, intelligence, defense, speed), slots to equip spells (which are moves), a 'trait' unique to that creature, an equippable item, and a personality which affects stat growth. None of these systems alone are that interesting, but interaction between them can quickly create complex stratagies and interactions. 
 
-> Examples of interactions within these systems includes:
-- items that increase one or more stats
-- traits that make item stat boosts more powerful
+> Baseic examples of interactions within these system include:
+- items that increase stats
+- traits that make stat boosts from items more powerful
 - spells that deal damage
 - traits that cause the damage of spells to scale off a different stat
 - spells that give your monsters more spells
-> Examples of extensions to these systems include:
+- traits that do all kinds of stuff to your stats
+- items that increase your damage against a specific class of creature
+
+> Without special extensions, there is already lots of ground for new content that shouldn't require much coding, assuming the basic interaction code is well-made. However, they extend these systems to add things like:
+- An item and spell upgrade system
+- spells that have a chance to cast themselves depending on their caster's actions
+- spells the caster shares with every creature in your party, allowing anyone to cast them.
 - Items with slots for spell gems that cast automatically, scaling off the weapon stats instead of the creature's stats
-- Items that have slots to equip the corpses of monsters, giving the item owner a copy of the trait the monster would have had in life
-- A fusion system to combine two creatures into a new one, averaging their stats
+- Items that have slots to equip the corpses of monsters, giving the item-owner a copy of the trait the monster would have had in life
+- A fusion system to combine two creatures into a new one, averaging their stats and giving the child BOTH of the parent's traits, allowing a single creature to have two self-affecting traits that can play off each other in interesting ways.
+
+> Siralim is in my mind as an RPG that does in-battle complexity well in a way I believe I can make a shallow mockery of in the time allotted. My goal will be to have TWO working interactions by the end of the 8 hours, and a system that can hopefully be extended.
+
+> The game's biggest flaw is that the overworld portion blows. It blows ass. It blows noses. It has a capacity for blowing equalled only by its capacity for BORING.
+
+> Spectrobes is a game where enemy encounters - pictured as tornados for reasons that are never explained - are guarded by little minions that your character must fight through to get to the actual RPG fight. Along with the usual RPG monster-collecting mechanics, your main character (who doesn't participate the combat encounters) can equip various weapons to fight these minions. The encounters themselves aren't much to write home about, but I think having two different layers of combat is an interesting twist on the JRPG genre, and something I can add the skeleton of quickly.
+
+> In making other games, I've created libraries for common gameplay patterns I plan to abuse the absolute hell out of. This is what makes me so confident I can implement what I've been planning. I made a library for twin-stick games I plan to lean heavily on for the overworld portion. I also have a turn system I made for a clicker game (that went nowhere) that I think I can lift to make the turn system in the RPG combat.
