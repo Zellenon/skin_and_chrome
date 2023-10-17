@@ -1,0 +1,15 @@
+#Flesh and Chome
+
+  Heavy weird/eldritch horror art style.
+  Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
+
+* System Overview
+** Liquids
+   If a creatures is below (spurt_threshhold, defaults to 50%) health after being attacked at least once, they will leak fluid onto themselves.
+   If a creatures is below (gush_threshhold, defaults to 15%) health at the end of their turn, they will leak fluid onto themselves.
+   Machines leak oil, organics leak blood. They are considered "covered" after leaking onto themselves.
+   Other systems can cause this liquid to spread, or have actions be conditional on the coverage of creatures.
+
+
+* Examples
+
