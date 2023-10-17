@@ -4,13 +4,16 @@ Heavy weird/eldritch horror art style.
 Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
 
 * System Overview
+** Creatures
+   - Species (Robot | Organic)
+   - Family ()
 ** Liquids
    If a creatures is below (spurt_threshhold, defaults to 50%) health after being attacked at least once, they will leak fluid onto themselves.
    If a creatures is below (gush_threshhold, defaults to 15%) health at the end of their turn, they will leak fluid onto themselves.
    Machines leak oil, organics leak blood. They are considered "covered" after leaking onto themselves.
    Other systems can cause this liquid to spread, or have actions be conditional on the coverage of creatures.
    Other liquids exist in edge cases, like Fire
-** Damage Types
+** Damage Types (#, Enum)
    Instead of just damage, damage has types.
    Damage has "form"/"degree of focus" and "filling".
    The filling is what hits them, the form is how.
@@ -22,10 +25,18 @@ Creatures are either machines or organics. Machines are highly simple geometrica
     ~ Smothering
     ~ Exotic
 *** Elements:
-    - Fire
-    - Solvent (water)
-    - Bone
-
+**** Chemical (More damage to organics)
+     - Fire
+     - Solvent (water)
+**** Physical (More damage to robots)
+     - Hard (Flesh/metal)
+     - Fluid (Sand, Glass)
+**** Energy 
+     - Magnetism (More damage to robots)
+     - Radiation (More damage to organics)
+** Perk Ring
+   Perk rings are 3-tuple of Option(Perks). When combined, the 'front' overwrites the perks of the ring 'behind' it, except for the None slot.
+   Some rings have a perk called Disease, which turns to None after merging (functioning as an erase)
 * Examples
   - (Passive) Memory of Sharks: This creature has 50% more attack when bloodied 
   - (Triggered) Sanguine Transport: The first time this creature spurts, it covers itself and 2 adjacent allies in blood instead of oil.
