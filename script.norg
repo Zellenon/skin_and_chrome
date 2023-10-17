@@ -4,3 +4,13 @@
 
 > Two games (or series) are inspiring my design choices: Siralim and Spectrobes. Siralim is a fascinating creature-collection battler in the style of pokemon, but focusing on having many layers of composable detail with each creature. Each creature has 5 stats (Max health, attack, intelligence, defense, speed), slots to equip spells (which are moves), a 'trait' unique to that creature, an equippable item, and a personality which affects stat growth. None of these systems alone are that interesting, but interaction between them can quickly create complex stratagies and interactions. 
 
+> Examples of interactions within these systems includes:
+- items that increase one or more stats
+- traits that make item stat boosts more powerful
+- spells that deal damage
+- traits that cause the damage of spells to scale off a different stat
+- spells that give your monsters more spells
+> Examples of extensions to these systems include:
+- Items with slots for spell gems that cast automatically, scaling off the weapon stats instead of the creature's stats
+- Items that have slots to equip the corpses of monsters, giving the item owner a copy of the trait the monster would have had in life
+- A fusion system to combine two creatures into a new one, averaging their stats
