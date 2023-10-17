@@ -9,7 +9,13 @@
    If a creatures is below (gush_threshhold, defaults to 15%) health at the end of their turn, they will leak fluid onto themselves.
    Machines leak oil, organics leak blood. They are considered "covered" after leaking onto themselves.
    Other systems can cause this liquid to spread, or have actions be conditional on the coverage of creatures.
+   Other liquids exist in edge cases, like Fire
 
 
 * Examples
+  - (Passive) Memory of Sharks: This creature has 50% more attack when bloodied 
+  - (Triggered) Sanguine Transport: The first time this creature spurts, it covers itself and 2 adjacent allies in blood instead of oil.
+  - (Passive) Stale Armor: After being covered in blood for 3 turns, 50% more attack until no longer bloodied
+  - (Weapon) Flamethrower: Deals fire damage, deals 2x damage if target is oiled, covers them in Flames
+  - (Liquid) Flames: Deals damage every turn. Deals 2x damage if the creature is also oiled. Has 25% chance to dry every turn end if creature not oiled, otherwise will never leave but has 25% chance to remove oiled.
 
