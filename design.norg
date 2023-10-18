@@ -1,4 +1,4 @@
-#Flesh and Chome
+#Skin and Chome
 
 Heavy weird/eldritch horror art style.
 Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
@@ -39,6 +39,9 @@ Creatures are either machines or organics. Machines are highly simple geometrica
    Some rings have a perk called Disease, which turns to None after merging (functioning as an erase)
 * Examples
   - (Passive) Memory of Sharks: This creature has 50% more attack when bloodied 
+  - (Perk) Just Can't: This creature cannot target allies with attacks or spells, even when targeting randomly.
+  - (Perk) The Consequences of What?: If an action this character takes results in it being attacked by another creature, it takes no damage.
+  - (Perk) Backed Into A Corner: This creature counter-attacks all attackers while defending itself.
   - (Triggered) Sanguine Transport: The first time this creature spurts, it covers itself and 2 adjacent allies in blood instead of oil.
   - (Passive) Stale Armor: After being covered in blood for 3 turns, 50% more attack until no longer bloodied
   - (Weapon) Flamethrower: Deals fire damage, deals 2x damage if target is oiled, covers them in Flames
