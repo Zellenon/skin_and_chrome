@@ -1,10 +1,10 @@
-use crate::OverworldBound;
+use crate::{gamestate::AppState, OverworldBound};
 use bevy::{
     core::Name,
     ecs::query::Has,
     prelude::{
-        Commands, Component, Entity, Event, EventReader, EventWriter, Plugin, Query, Startup,
-        Update, Vec2,
+        Commands, Component, Entity, Event, EventReader, EventWriter, OnEnter, Plugin, Query,
+        Startup, Update, Vec2,
     },
 };
 use bevy_composable::app_impl::ComplexSpawnable;
@@ -38,7 +38,8 @@ pub struct OverworldPlugin;
 
 impl Plugin for OverworldPlugin {
     fn build(&self, app: &mut bevy::prelude::App) {
-        app.add_systems(Startup, debug_stage_setup);
+        app.add_systems(OnEnter(AppState::InGame), debug_stage_setup);
+
         app.add_event::<BeginNPCEncounter>();
         app.add_event::<BeginPlayerEncounter>();
         app.add_systems(Update, trigger_encounter_on_touch);

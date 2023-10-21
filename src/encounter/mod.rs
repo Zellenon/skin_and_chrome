@@ -1,7 +1,7 @@
 use bevy::prelude::{EventReader, NextState, Plugin, ResMut, Resource, Update};
 
 use crate::{
-    gamestate::GameMode,
+    gamestate::GameplayMode,
     overworld::{BeginNPCEncounter, BeginPlayerEncounter},
 };
 
@@ -18,13 +18,13 @@ impl Plugin for EncounterPlugin {
 }
 
 pub fn trigger_player_encounter(
-    mut state: ResMut<NextState<GameMode>>,
+    mut state: ResMut<NextState<GameplayMode>>,
     mut triggers: EventReader<BeginPlayerEncounter>,
     mut battle_data: ResMut<BattleData>,
 ) {
     for _ in triggers.iter() {
         println!("Triggering player encounter");
-        state.set(GameMode::Encounter);
+        state.set(GameplayMode::Encounter);
     }
 }
 

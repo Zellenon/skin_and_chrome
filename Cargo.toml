@@ -18,6 +18,7 @@ bevy_prototype_lyon = {version = "0.9"}
 bevy_twin_stick = {git = "https://github.com/Zellenon/bevy_twin_stick.git"}
 bevy_composable = {git = "https://github.com/Zellenon/bevy_composable.git"}
 bevy_stats = {git = "https://github.com/Zellenon/bevy_stats.git"}
+bevy_quickmenu = "0.2"
 
 # Enable a small amount of optimization in debug mode
 [profile.dev]
