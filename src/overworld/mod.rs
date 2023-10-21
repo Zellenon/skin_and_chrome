@@ -1,11 +1,16 @@
-use crate::{gamestate::AppState, OverworldBound};
+use crate::{
+    assets::{add_texture, ImageAssets},
+    gamestate::AppState,
+    OverworldBound,
+};
 use bevy::{
     core::Name,
     ecs::query::Has,
     prelude::{
-        Commands, Component, Entity, Event, EventReader, EventWriter, OnEnter, Plugin, Query,
+        Commands, Component, Entity, Event, EventReader, EventWriter, OnEnter, Plugin, Query, Res,
         Startup, Update, Vec2,
     },
+    sprite::{Anchor, Sprite},
 };
 use bevy_composable::app_impl::ComplexSpawnable;
 use bevy_composable::{
@@ -13,7 +18,6 @@ use bevy_composable::{
     CT,
 };
 
-use bevy_twin_stick::bevy_rapier2d::prelude::ActiveEvents;
 use bevy_twin_stick::{
     actors::{ActorBundle, Tracking},
     bevy_mod_transform2d::transform2d::Transform2d,
@@ -21,6 +25,7 @@ use bevy_twin_stick::{
     player::Player,
     stats::Speed,
 };
+use bevy_twin_stick::{bevy_rapier2d::prelude::ActiveEvents, transform2d_mods::Sprite2dBundle};
 
 #[derive(Component)]
 pub struct EncounterTrigger;
@@ -46,8 +51,9 @@ impl Plugin for OverworldPlugin {
     }
 }
 
-pub fn debug_stage_setup(mut commands: Commands) {
-    commands.spawn_complex(enemy_tree() + shift_pos(Vec2::new(0., 90.)));
+pub fn debug_stage_setup(mut commands: Commands, sprites: Res<ImageAssets>) {
+    commands
+        .spawn_complex(enemy_tree() + add_texture(&sprites.org1) + shift_pos(Vec2::new(0., 90.)));
 }
 
 pub fn trigger_encounter_on_touch(

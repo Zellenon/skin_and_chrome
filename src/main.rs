@@ -1,10 +1,11 @@
 use std::marker::PhantomData;
 
+use assets::AssetsPlugin;
 use bevy::{
     app::{App, AppExit},
     prelude::{
-        default, in_state, ClearColor, EventWriter, IntoSystemConfigs, NextState, OnEnter,
-        PluginGroup, ResMut, Update,
+        default, in_state, AssetPlugin, ClearColor, EventWriter, IntoSystemConfigs, NextState,
+        OnEnter, PluginGroup, ResMut, Update,
     },
     render::color::Color,
     window::{Window, WindowPlugin},
@@ -18,6 +19,7 @@ use encounter::EncounterPlugin;
 use gamestate::{AppState, GameStatePlugin, GameplayMode, OverworldBound};
 use overworld::OverworldPlugin;
 
+mod assets;
 mod encounter;
 mod gamestate;
 mod overworld;
@@ -46,7 +48,12 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     app.add_systems(OnEnter(AppState::Quitting), exit);
     app.add_systems(Update, main_menu_gui.run_if(in_state(AppState::MainMenu)));
 
-    app.add_plugins((GameStatePlugin, OverworldPlugin, EncounterPlugin));
+    app.add_plugins((
+        GameStatePlugin,
+        OverworldPlugin,
+        EncounterPlugin,
+        AssetsPlugin,
+    ));
 
     if cfg!(debug_assertions) {
         app.add_plugins(WorldInspectorPlugin::new());

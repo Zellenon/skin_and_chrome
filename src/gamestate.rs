@@ -36,6 +36,7 @@ pub enum GameplayMode {
 #[derive(States, Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Reflect)]
 pub enum AppState {
     #[default]
+    LoadingAssets,
     MainMenu,
     InGame,
     Quitting,
