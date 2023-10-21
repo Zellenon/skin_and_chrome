@@ -1,9 +1,14 @@
-#Skin and Chome
+Skin and Chome
 
 Heavy weird/eldritch horror art style.
 Creatures are either machines or organics. Machines are highly simple geometrical constructions made of flat edges most of the time, organics are more rounded.
 
 * System Overview
+** Actions
+*** Attack
+*** Defend
+*** Cover
+    Cover a non-self creature. If that creature is attacked and self+covered speed combined beats attack speed, self takes damage instead
 ** Creatures
    - Species (Robot | Organic)
    - Family ()
