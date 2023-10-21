@@ -2,7 +2,7 @@ use std::marker::PhantomData;
 
 use bevy::{
     app::App,
-    prelude::{default, ClearColor, Commands, Name, PluginGroup, Startup},
+    prelude::{default, ClearColor, Commands, PluginGroup, Startup},
     render::color::Color,
     window::{Window, WindowPlugin},
     DefaultPlugins,
@@ -15,12 +15,19 @@ use bevy_composable::{
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use bevy_stats::StatPlugin;
 use bevy_twin_stick::{
-    actors::ActorBundle, ai::keyboard::KeyboardAI, bevy_rapier2d::render::RapierDebugRenderPlugin,
-    player::Player, stats::Speed, TwinStickToggleablePlugin,
+    ai::keyboard::KeyboardAI, bevy_rapier2d::render::RapierDebugRenderPlugin, player::Player,
+    TwinStickToggleablePlugin,
 };
+use encounter::EncounterPlugin;
 use gamestate::{GameMode, GameStatePlugin, OverworldBound};
+use overworld::OverworldPlugin;
 
+use crate::overworld::overworld_actor;
+
+mod encounter;
 mod gamestate;
+mod overworld;
+mod rpg;
 
 pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut app = App::new();
@@ -41,7 +48,7 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
         StatPlugin,
     ));
 
-    app.add_plugins(GameStatePlugin);
+    app.add_plugins((GameStatePlugin, OverworldPlugin, EncounterPlugin));
 
     if cfg!(debug_assertions) {
         app.add_plugins(WorldInspectorPlugin::new());
@@ -66,12 +73,5 @@ fn setup(mut commands: Commands) {
 }
 
 fn player_tree() -> ComponentTree {
-    CT!(
-        Player,
-        Name::new("Player"),
-        ActorBundle::default(),
-        Speed(1500.),
-        KeyboardAI,
-        OverworldBound
-    )
+    overworld_actor("Player", 800.) + CT!(Player, KeyboardAI)
 }
