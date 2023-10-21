@@ -7,8 +7,8 @@ use bevy::{
     core::Name,
     ecs::query::Has,
     prelude::{
-        Commands, Component, Entity, Event, EventReader, EventWriter, OnEnter, Plugin, Query, Res,
-        Startup, Update, Vec2,
+        Commands, Component, Entity, Event, EventReader, EventWriter, Handle, Image, OnEnter,
+        Plugin, Query, Res, Startup, Update, Vec2,
     },
     sprite::{Anchor, Sprite},
 };
@@ -52,8 +52,7 @@ impl Plugin for OverworldPlugin {
 }
 
 pub fn debug_stage_setup(mut commands: Commands, sprites: Res<ImageAssets>) {
-    commands
-        .spawn_complex(enemy_tree() + add_texture(&sprites.org1) + shift_pos(Vec2::new(0., 90.)));
+    commands.spawn_complex(enemy_tree(&sprites.org1) + shift_pos(Vec2::new(0., 90.)));
 }
 
 pub fn trigger_encounter_on_touch(
@@ -78,19 +77,19 @@ pub fn trigger_encounter_on_touch(
 /////////  Component Trees ////////////
 ///////////////////////////////////////
 
-fn enemy_tree() -> ComponentTree {
-    overworld_actor("Debug Enemy", 400.) + CT!(EncounterTrigger)
+fn enemy_tree(sprite: &Handle<Image>) -> ComponentTree {
+    overworld_actor("Debug Enemy", 400., sprite) + CT!(EncounterTrigger)
 }
 
 /// Holds all the default components for acting entities in the overworld.
-pub fn overworld_actor(name: &'static str, speed: f32) -> ComponentTree {
+pub fn overworld_actor(name: &'static str, speed: f32, tex: &Handle<Image>) -> ComponentTree {
     CT!(
         Name::new(name),
         ActorBundle::default(),
         Speed(speed),
         OverworldBound,
         ActiveEvents::COLLISION_EVENTS
-    )
+    ) + add_texture(tex)
 }
 
 /// Returns a CT that can be used to easily shift the starting position of an entity by overwriting

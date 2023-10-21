@@ -1,7 +1,7 @@
 use bevy::{
     prelude::{
-        Commands, Component, NextState, OnEnter, OnExit, Plugin, Query, ResMut, Startup, States,
-        Visibility, With,
+        Commands, Component, Handle, Image, NextState, OnEnter, OnExit, Plugin, Query, Res, ResMut,
+        Startup, States, Visibility, With,
     },
     reflect::Reflect,
 };
@@ -13,7 +13,7 @@ use bevy_twin_stick::{
     bevy_rapier2d::prelude::RapierConfiguration, meta_states::PluginControlState,
 };
 
-use crate::overworld::overworld_actor;
+use crate::{assets::ImageAssets, overworld::overworld_actor};
 
 /// Things that should only be shown in x gamestate
 #[derive(Component)]
@@ -97,11 +97,15 @@ fn leave_encounter(mut things_to_hide: Query<&mut Visibility, With<EncounterBoun
     }
 }
 
-fn start_new_game(mut commands: Commands, mut game_mode: ResMut<NextState<GameplayMode>>) {
-    commands.spawn_complex(player_tree());
+fn start_new_game(
+    mut commands: Commands,
+    mut game_mode: ResMut<NextState<GameplayMode>>,
+    sprites: Res<ImageAssets>,
+) {
+    commands.spawn_complex(player_tree(&sprites.robo1));
     game_mode.set(GameplayMode::Overworld);
 }
 
-fn player_tree() -> ComponentTree {
-    overworld_actor("Player", 800.) + CT!(Player, KeyboardAI)
+fn player_tree(sprite: &Handle<Image>) -> ComponentTree {
+    overworld_actor("Player", 800., sprite) + CT!(Player, KeyboardAI)
 }

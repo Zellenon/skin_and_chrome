@@ -4,8 +4,8 @@ use assets::AssetsPlugin;
 use bevy::{
     app::{App, AppExit},
     prelude::{
-        default, in_state, AssetPlugin, ClearColor, EventWriter, IntoSystemConfigs, NextState,
-        OnEnter, PluginGroup, ResMut, Update,
+        default, in_state, ClearColor, EventWriter, IntoSystemConfigs, NextState, OnEnter,
+        PluginGroup, ResMut, Update,
     },
     render::color::Color,
     window::{Window, WindowPlugin},
