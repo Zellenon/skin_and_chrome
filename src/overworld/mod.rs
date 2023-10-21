@@ -1,6 +1,7 @@
 use crate::{
     assets::{add_texture, ImageAssets},
     gamestate::AppState,
+    rpg::standard_creature,
     OverworldBound,
 };
 use bevy::{
@@ -33,11 +34,11 @@ pub struct EncounterTrigger;
 pub struct Enemy;
 
 #[derive(Event)]
-pub struct EncounterCollision(Entity, Entity);
+pub struct EncounterCollision(pub Entity, pub Entity);
 #[derive(Event)]
-pub struct BeginPlayerEncounter(Entity);
+pub struct BeginPlayerEncounter(pub Entity, pub Entity);
 #[derive(Event)]
-pub struct BeginNPCEncounter(Entity, Entity);
+pub struct BeginNPCEncounter(pub Entity, pub Entity);
 
 pub struct OverworldPlugin;
 
@@ -52,7 +53,11 @@ impl Plugin for OverworldPlugin {
 }
 
 pub fn debug_stage_setup(mut commands: Commands, sprites: Res<ImageAssets>) {
-    commands.spawn_complex(enemy_tree(&sprites.org1) + shift_pos(Vec2::new(0., 90.)));
+    commands.spawn_complex(
+        enemy_tree(&sprites.org1) + shift_pos(Vec2::new(0., 90.))
+            << standard_creature("Borbus the Destroyer", &sprites.org1)
+            << standard_creature("Prime Ministress Angela Merkel", &sprites.org1),
+    );
 }
 
 pub fn trigger_encounter_on_touch(
@@ -65,9 +70,9 @@ pub fn trigger_encounter_on_touch(
         println!("Collision with encounter trigger");
         if let CollisionEvent::Started(e1, e2, _) = collision_event {
             if let (Ok(_), Ok(_)) = (player.get(*e1), encounter_trigger.get(*e2)) {
-                begin_player_encounter.send(BeginPlayerEncounter(*e2));
+                begin_player_encounter.send(BeginPlayerEncounter(*e1, *e2));
             } else if let (Ok(_), Ok(_)) = (player.get(*e2), encounter_trigger.get(*e1)) {
-                begin_player_encounter.send(BeginPlayerEncounter(*e1));
+                begin_player_encounter.send(BeginPlayerEncounter(*e2, *e1));
             }
         }
     }

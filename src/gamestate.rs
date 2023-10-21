@@ -13,7 +13,7 @@ use bevy_twin_stick::{
     bevy_rapier2d::prelude::RapierConfiguration, meta_states::PluginControlState,
 };
 
-use crate::{assets::ImageAssets, overworld::overworld_actor};
+use crate::{assets::ImageAssets, overworld::overworld_actor, rpg::standard_creature};
 
 /// Things that should only be shown in x gamestate
 #[derive(Component)]
@@ -102,10 +102,9 @@ fn start_new_game(
     mut game_mode: ResMut<NextState<GameplayMode>>,
     sprites: Res<ImageAssets>,
 ) {
-    commands.spawn_complex(player_tree(&sprites.robo1));
+    commands.spawn_complex(
+        overworld_actor("Player", 800., &sprites.robo1) + CT!(Player, KeyboardAI)
+            << standard_creature("Mike, former monarch of Yahoo Answers", &sprites.robo2blood),
+    );
     game_mode.set(GameplayMode::Overworld);
-}
-
-fn player_tree(sprite: &Handle<Image>) -> ComponentTree {
-    overworld_actor("Player", 800., sprite) + CT!(Player, KeyboardAI)
 }
