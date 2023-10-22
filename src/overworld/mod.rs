@@ -21,6 +21,7 @@ use bevy_composable::{
 
 use bevy_twin_stick::{
     actors::{ActorBundle, Tracking},
+    ai::wander::PerlinWanderAI,
     bevy_mod_transform2d::transform2d::Transform2d,
     bevy_rapier2d::prelude::CollisionEvent,
     player::Player,
@@ -54,9 +55,11 @@ impl Plugin for OverworldPlugin {
 
 pub fn debug_stage_setup(mut commands: Commands, sprites: Res<ImageAssets>) {
     commands.spawn_complex(
-        enemy_tree(&sprites.org1) + shift_pos(Vec2::new(0., 90.))
+        enemy_tree(&sprites.org1)
+            + shift_pos(Vec2::new(0., 90.))
+            + CT!(PerlinWanderAI::new(0.3, 0.3, 0.1, 0.9), Speed(50.))
             << standard_creature("Borbus the Destroyer", &sprites.org1)
-            << standard_creature("Prime Ministress Angela Merkel", &sprites.org1),
+            << standard_creature("Prime Ministress Angela Merkel", &sprites.org2),
     );
 }
 

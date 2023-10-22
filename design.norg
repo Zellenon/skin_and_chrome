@@ -10,8 +10,27 @@ Creatures are either machines or organics. Machines are highly simple geometrica
 *** Cover
     Cover a non-self creature. If that creature is attacked and self+covered speed combined beats attack speed, self takes damage instead
 ** Creatures
-   - Species (Robot | Organic)
-   - Family ()
+*** Robots
+*** Organics
+** Stats
+   There are "interior" and "effective" stats. Effective stats are the ones that actually matter, and they are derived from multiple inner stats.
+*** Inner Stats
+    - Bulk
+    - Strength
+    - (Coordination / Complexity)
+    - Density
+    - Energy
+*** Effective Stats
+    - HP
+      Size + Energy - ??
+    - Melee Damage
+    - Ranged Damage
+      (Coordination/Complexity) + (Strength/Energy) - 
+    - AP gain
+      Speed + Energy - Bulk
+    - Defense
+      Strength + Density - Energy
+    - Cover Strength
 ** Liquids
    If a creatures is below (spurt_threshhold, defaults to 50%) health after being attacked at least once, they will leak fluid onto themselves.
    If a creatures is below (gush_threshhold, defaults to 15%) health at the end of their turn, they will leak fluid onto themselves.
